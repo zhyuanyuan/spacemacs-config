@@ -29,7 +29,7 @@ This function should only modify configuration layer settings."
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.spacemacs.d")
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
@@ -40,24 +40,25 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
       auto-completion
-      better-defaults
-     emacs-lisp
+      (better-defaults :variables
+                       better-defaults-move-to-end-of-code-first t)
+      emacs-lisp
       git
-     helm
+      helm
       markdown
-     multiple-cursors
+      multiple-cursors
       org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
       spell-checking
       syntax-checking
       treemacs
       ivy
       osx
+      myself-layer
 
       ;; version-control
-
+      ;; (shell :variables
+      ;;        shell-default-height 30
+      ;;        shell-default-position 'bottom)
      )
 
    ;; List of additional packages that will be installed without being
@@ -67,7 +68,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(youdao-dictionary)
+   dotspacemacs-additional-packages '()
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -191,8 +192,10 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         spacemacs-light
                          monokai
+                         solarized
+		                     zenburn
+                         spacemacs-light
                          spacemacs-dark
                         )
 
@@ -205,18 +208,21 @@ It should only modify the values of Spacemacs settings."
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
    dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
 
+
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
    dotspacemacs-colorize-cursor-according-to-state t
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 17
+   dotspacemacs-default-font '("Courier New"
+                               :size 18
                                :weight normal
                                :width normal)
 
+
    ;; The leader key (default "SPC")
+
    dotspacemacs-leader-key "SPC"
 
    ;; The key used for Emacs commands `M-x' (after pressing on the leader key).
@@ -462,8 +468,12 @@ This function is called only while dumping Spacemacs configuration. You can
 dump."
   )
 
-(defun dotspacemacs/user-config ()
-  "Configuration for user code:
+(defun dotspacemacs/user-config (
+                                ; (setq powerline-default-separator 'arrow)
+                                ; (setq ns-use-srgb-colorspace nil)
+                                 )
+  "Configuration for us
+er code:
 This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
