@@ -1,5 +1,4 @@
 (global-linum-mode t)
-(global-set-key (kbd "M-s o") 'occur-dwim)
 
 ;;去掉emacs自动备份文件
 (setq-default make-backup-files nil)
@@ -7,8 +6,23 @@
 ;; 内容有修改时自动更新文件
 (global-auto-revert-mode t)
 
-;;设置最近打开的文件
-(require 'recentf)
-(recentf-mode 1)
-(setq recentf-max-menu-items 30)
-(global-set-key (kbd "C-x C-r") 'recentf-open-files)
+
+
+(defvar org-agenda-dir ""
+  "gtd org files location")
+
+(defvar deft-dir ""
+  "deft org files locaiton")
+
+(defvar blog-admin-dir ""
+  "blog-admin files location")
+
+(if (spacemacs/system-is-mswindows)
+    (setq
+     org-agenda-dir "f:/org"
+     deft-dir "f:/org"
+     blog-admin-dir "f:/yuan.com")
+  (setq
+   org-agenda-dir "~/org"
+   deft-dir "~/org"
+   blog-admin-dir "~/yuan.com"))
